@@ -20,6 +20,7 @@ export class ViewLine implements IVisibleLineData {
 
 	protected _context:ViewContext;
 	private _renderWhitespace: 'none' | 'boundary' | 'all';
+	private _renderHardSpace: boolean;
 	private _renderControlCharacters: boolean;
 	private _spaceWidth: number;
 	private _lineHeight: number;
@@ -39,6 +40,7 @@ export class ViewLine implements IVisibleLineData {
 	constructor(context:ViewContext) {
 		this._context = context;
 		this._renderWhitespace = this._context.configuration.editor.viewInfo.renderWhitespace;
+		this._renderHardSpace = this._context.configuration.editor.viewInfo.renderHardSpace;
 		this._renderControlCharacters = this._context.configuration.editor.viewInfo.renderControlCharacters;
 		this._spaceWidth = this._context.configuration.editor.fontInfo.spaceWidth;
 		this._lineHeight = this._context.configuration.editor.lineHeight;
@@ -85,6 +87,9 @@ export class ViewLine implements IVisibleLineData {
 	public onConfigurationChanged(e:IConfigurationChangedEvent): void {
 		if (e.viewInfo.renderWhitespace) {
 			this._renderWhitespace = this._context.configuration.editor.viewInfo.renderWhitespace;
+		}
+		if (e.viewInfo.renderHardSpace) {
+			this._renderHardSpace = this._context.configuration.editor.viewInfo.renderHardSpace;
 		}
 		if (e.viewInfo.renderControlCharacters) {
 			this._renderControlCharacters = this._context.configuration.editor.viewInfo.renderControlCharacters;
@@ -171,6 +176,7 @@ export class ViewLine implements IVisibleLineData {
 			this._spaceWidth,
 			this._stopRenderingLineAfter,
 			this._renderWhitespace,
+			this._renderHardSpace,
 			this._renderControlCharacters,
 			lineParts.getParts()
 		));

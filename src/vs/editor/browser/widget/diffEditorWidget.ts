@@ -1851,6 +1851,7 @@ class InlineViewZonesComputer extends ViewZonesComputer {
 			config.fontInfo.spaceWidth,
 			config.viewInfo.stopRenderingLineAfter,
 			config.viewInfo.renderWhitespace,
+			config.viewInfo.renderHardSpace,
 			config.viewInfo.renderControlCharacters,
 			parts.getParts()
 		));

@@ -624,6 +624,7 @@ export class TextEditorOptions extends EditorOptions {
 			if (config && config.viewInfo && config.wrappingInfo) {
 				this.editorOptions = Object.create(null);
 				this.editorOptions.renderWhitespace = config.viewInfo.renderWhitespace;
+				this.editorOptions.renderHardSpace = config.viewInfo.renderHardSpace;
 				this.editorOptions.renderControlCharacters = config.viewInfo.renderControlCharacters;
 				this.editorOptions.wrappingColumn = config.wrappingInfo.isViewportWrapping ? 0 : -1;
 			}

@@ -1304,6 +1304,11 @@ declare module monaco.editor {
          */
         renderWhitespace?: 'none' | 'boundary' | 'all';
         /**
+         * Enable rendering of non-breakable (hard) space character.
+         * Defaults to false.
+         */
+        renderHardSpace?: boolean;
+        /**
          * Enable rendering of control characters.
          * Defaults to false.
          */
@@ -1415,6 +1420,7 @@ declare module monaco.editor {
         editorClassName: string;
         stopRenderingLineAfter: number;
         renderWhitespace: 'none' | 'boundary' | 'all';
+        renderHardSpace: boolean;
         renderControlCharacters: boolean;
         renderIndentGuides: boolean;
         renderLineHighlight: boolean;
@@ -1443,6 +1449,7 @@ declare module monaco.editor {
         editorClassName: boolean;
         stopRenderingLineAfter: boolean;
         renderWhitespace: boolean;
+        renderHardSpace: boolean;
         renderControlCharacters: boolean;
         renderIndentGuides: boolean;
         renderLineHighlight: boolean;

@@ -94,6 +94,7 @@ class ConfigClass implements IConfiguration {
 			referenceInfos: true,
 			folding: true,
 			renderWhitespace: 'none',
+			renderHardSpace: false,
 			renderControlCharacters: false,
 			renderIndentGuides: false,
 			renderLineHighlight: true,

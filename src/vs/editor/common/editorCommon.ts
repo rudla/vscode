@@ -446,6 +446,11 @@ export interface IEditorOptions {
 	 */
 	renderWhitespace?: 'none' | 'boundary' | 'all';
 	/**
+	 * Enable rendering of non-breakable (hard) space character.
+	 * Defaults to false.
+	 */
+	renderHardSpace?: boolean;
+	/**
 	 * Enable rendering of control characters.
 	 * Defaults to false.
 	 */
@@ -658,6 +663,7 @@ export class InternalEditorViewOptions {
 	editorClassName: string;
 	stopRenderingLineAfter: number;
 	renderWhitespace: 'none' | 'boundary' | 'all';
+	renderHardSpace: boolean;
 	renderControlCharacters: boolean;
 	renderIndentGuides: boolean;
 	renderLineHighlight: boolean;
@@ -688,6 +694,7 @@ export class InternalEditorViewOptions {
 		editorClassName: string;
 		stopRenderingLineAfter: number;
 		renderWhitespace: 'none' | 'boundary' | 'all';
+		renderHardSpace: boolean;
 		renderControlCharacters: boolean;
 		renderIndentGuides: boolean;
 		renderLineHighlight: boolean;
@@ -714,6 +721,7 @@ export class InternalEditorViewOptions {
 		this.editorClassName = String(source.editorClassName);
 		this.stopRenderingLineAfter = source.stopRenderingLineAfter|0;
 		this.renderWhitespace = source.renderWhitespace;
+		this.renderHardSpace = source.renderHardSpace;
 		this.renderControlCharacters = Boolean(source.renderControlCharacters);
 		this.renderIndentGuides = Boolean(source.renderIndentGuides);
 		this.renderLineHighlight = Boolean(source.renderLineHighlight);
@@ -774,6 +782,7 @@ export class InternalEditorViewOptions {
 			&& this.editorClassName === other.editorClassName
 			&& this.stopRenderingLineAfter === other.stopRenderingLineAfter
 			&& this.renderWhitespace === other.renderWhitespace
+			&& this.renderHardSpace === other.renderHardSpace
 			&& this.renderControlCharacters === other.renderControlCharacters
 			&& this.renderIndentGuides === other.renderIndentGuides
 			&& this.renderLineHighlight === other.renderLineHighlight
@@ -807,6 +816,7 @@ export class InternalEditorViewOptions {
 			editorClassName: this.editorClassName !== newOpts.editorClassName,
 			stopRenderingLineAfter: this.stopRenderingLineAfter !== newOpts.stopRenderingLineAfter,
 			renderWhitespace: this.renderWhitespace !== newOpts.renderWhitespace,
+			renderHardSpace: this.renderHardSpace !== newOpts.renderHardSpace,
 			renderControlCharacters: this.renderControlCharacters !== newOpts.renderControlCharacters,
 			renderIndentGuides: this.renderIndentGuides !== newOpts.renderIndentGuides,
 			renderLineHighlight: this.renderLineHighlight !== newOpts.renderLineHighlight,
@@ -844,6 +854,7 @@ export interface IViewConfigurationChangedEvent {
 	editorClassName: boolean;
 	stopRenderingLineAfter: boolean;
 	renderWhitespace: boolean;
+	renderHardSpace: boolean;
 	renderControlCharacters: boolean;
 	renderIndentGuides: boolean;
 	renderLineHighlight: boolean;

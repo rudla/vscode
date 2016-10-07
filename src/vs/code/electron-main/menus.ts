@@ -495,6 +495,7 @@ export class VSCodeMenu {
 		const toggleWordWrap = this.createMenuItem(nls.localize({ key: 'miToggleWordWrap', comment: ['&& denotes a mnemonic'] }, "Toggle &&Word Wrap"), 'editor.action.toggleWordWrap');
 		const toggleRenderWhitespace = this.createMenuItem(nls.localize({ key: 'miToggleRenderWhitespace', comment: ['&& denotes a mnemonic'] }, "Toggle &&Render Whitespace"), 'editor.action.toggleRenderWhitespace');
 		const toggleRenderControlCharacters = this.createMenuItem(nls.localize({ key: 'miToggleRenderControlCharacters', comment: ['&& denotes a mnemonic'] }, "Toggle &&Control Characters"), 'editor.action.toggleRenderControlCharacter');
+		const toggleHardSpaceCharacters = this.createMenuItem(nls.localize({ key: 'miToggleHardSpaceCharacters', comment: ['&& denotes a mnemonic'] }, "Toggle &&Hard Space Character"), 'editor.action.toggleRenderHardSpaceCharacter');
 
 
 		const zoomIn = this.createMenuItem(nls.localize({ key: 'miZoomIn', comment: ['&& denotes a mnemonic'] }, "&&Zoom In"), 'workbench.action.zoomIn');
@@ -527,6 +528,7 @@ export class VSCodeMenu {
 			toggleWordWrap,
 			toggleRenderWhitespace,
 			toggleRenderControlCharacters,
+			toggleHardSpaceCharacters,
 			__separator__(),
 			zoomIn,
 			zoomOut,

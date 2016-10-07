@@ -205,3 +205,22 @@ export class ToggleRenderControlCharacterAction extends EditorAction {
 		});
 	}
 }
+
+@editorAction
+export class ToggleRenderHardSpaceCharacterAction extends EditorAction {
+
+	constructor() {
+		super({
+			id: 'editor.action.toggleRenderHardSpaceCharacter',
+			label: nls.localize('toggleRenderHardSpaceCharacter', "Toggle Hard Space Character"),
+			alias: 'Toggle Render Hard Space Character',
+			precondition: null
+		});
+	}
+
+	public run(accessor:ServicesAccessor, editor:ICommonCodeEditor): void {
+		editor.updateOptions({
+			renderHardSpace: !editor.getConfiguration().viewInfo.renderHardSpace
+		});
+	}
+}

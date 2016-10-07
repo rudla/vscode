@@ -15,6 +15,7 @@ export class RenderLineInput {
 	spaceWidth: number;
 	stopRenderingLineAfter: number;
 	renderWhitespace: 'none' | 'boundary' | 'all';
+	renderHardSpace: boolean;
 	renderControlCharacters: boolean;
 	parts: ViewLineToken[];
 
@@ -24,6 +25,7 @@ export class RenderLineInput {
 		spaceWidth: number,
 		stopRenderingLineAfter: number,
 		renderWhitespace: 'none' | 'boundary' | 'all',
+		renderHardSpace: boolean,
 		renderControlCharacters: boolean,
 		parts: ViewLineToken[]
 	) {
@@ -32,6 +34,7 @@ export class RenderLineInput {
 		this.spaceWidth = spaceWidth;
 		this.stopRenderingLineAfter = stopRenderingLineAfter;
 		this.renderWhitespace = renderWhitespace;
+		this.renderHardSpace = renderHardSpace;
 		this.renderControlCharacters = renderControlCharacters;
 		this.parts = parts;
 	}
@@ -57,6 +60,7 @@ export function renderLine(input:RenderLineInput): RenderLineOutput {
 	const spaceWidth = input.spaceWidth;
 	const actualLineParts = input.parts;
 	const renderWhitespace = input.renderWhitespace;
+	const renderHardSpace = input.renderHardSpace;
 	const renderControlCharacters = input.renderControlCharacters;
 	const charBreakIndex = (input.stopRenderingLineAfter === -1 ? lineTextLength : input.stopRenderingLineAfter - 1);
 
@@ -73,7 +77,7 @@ export function renderLine(input:RenderLineInput): RenderLineOutput {
 		throw new Error('Cannot render non empty line without line parts!');
 	}
 
-	return renderLineActual(lineText, lineTextLength, tabSize, spaceWidth, actualLineParts.slice(0), renderWhitespace, renderControlCharacters, charBreakIndex);
+	return renderLineActual(lineText, lineTextLength, tabSize, spaceWidth, actualLineParts.slice(0), renderWhitespace, renderHardSpace, renderControlCharacters, charBreakIndex);
 }
 
 function isWhitespace(type:string): boolean {
@@ -89,7 +93,7 @@ function controlCharacterToPrintable(characterCode: number): string {
 	return String.fromCharCode(_controlCharacterSequenceConversionStart + characterCode);
 }
 
-function renderLineActual(lineText: string, lineTextLength: number, tabSize: number, spaceWidth: number, actualLineParts: ViewLineToken[], renderWhitespace: 'none' | 'boundary' | 'all', renderControlCharacters: boolean, charBreakIndex: number): RenderLineOutput {
+function renderLineActual(lineText: string, lineTextLength: number, tabSize: number, spaceWidth: number, actualLineParts: ViewLineToken[], renderWhitespace: 'none' | 'boundary' | 'all', renderHardSpace: boolean, renderControlCharacters: boolean, charBreakIndex: number): RenderLineOutput {
 	lineTextLength = +lineTextLength;
 	tabSize = +tabSize;
 	charBreakIndex = +charBreakIndex;
@@ -201,6 +205,14 @@ function renderLineActual(lineText: string, lineTextLength: number, tabSize: num
 					case CharCode.UTF8_BOM:
 					case CharCode.LINE_SEPARATOR_2028:
 						out += '\ufffd';
+						break;
+
+					case CharCode.HardSpace:
+						if (renderHardSpace) {
+							out += '&middot;';
+						} else {
+							out += lineText.charAt(charIndex);
+						}
 						break;
 
 					case CharCode.CarriageReturn:

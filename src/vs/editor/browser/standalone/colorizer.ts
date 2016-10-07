@@ -93,6 +93,7 @@ export class Colorizer {
 			-1,
 			'none',
 			false,
+			false,
 			tokens
 		));
 		return renderResult.output;
@@ -123,6 +124,7 @@ function _fakeColorize(lines:string[], tabSize:number): string {
 			-1,
 			'none',
 			false,
+			false,
 			[]
 		));
 
@@ -148,6 +150,7 @@ function _actualColorize(lines:string[], tabSize:number, tokenizationSupport: IT
 			0,
 			-1,
 			'none',
+			false,
 			false,
 			tokenizeResult.tokens.map(t => new ViewLineToken(t.startIndex, t.type))
 		));

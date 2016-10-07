@@ -269,6 +269,7 @@ class InternalEditorOptionsHelper {
 		} else if (<any>renderWhitespace === false) {
 			renderWhitespace = 'none';
 		}
+		let renderHardSpace = opts.renderHardSpace;
 
 		let viewInfo = new editorCommon.InternalEditorViewOptions({
 			theme: opts.theme,
@@ -292,6 +293,7 @@ class InternalEditorOptionsHelper {
 			editorClassName: editorClassName,
 			stopRenderingLineAfter: stopRenderingLineAfter,
 			renderWhitespace: renderWhitespace,
+			renderHardSpace: renderHardSpace,
 			renderControlCharacters: toBoolean(opts.renderControlCharacters),
 			renderIndentGuides: toBoolean(opts.renderIndentGuides),
 			renderLineHighlight: toBoolean(opts.renderLineHighlight),
@@ -826,6 +828,11 @@ let editorConfiguration:IConfigurationNode = {
 			'enum': ['none', 'boundary', 'all'],
 			default: DefaultConfig.editor.renderWhitespace,
 			description: nls.localize('renderWhitespace', "Controls how the editor should render whitespace characters, posibilties are 'none', 'boundary', and 'all'. The 'boundary' option does not render single spaces between words.")
+		},
+		'editor.renderHardSpace': {
+			'type': 'boolean',
+			default: DefaultConfig.editor.renderHardSpace,
+			description: nls.localize('renderHardSpace', "Controls whether the editor should render hard space characters.")
 		},
 		'editor.renderControlCharacters': {
 			'type': 'boolean',
